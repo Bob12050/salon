@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumière Hair Atelier｜横浜の架空ヘアサロン</title>
+  <meta name="description" content="Lumière Hair Atelierは、透明感のあるカラーと似合わせカットが得意な架空のヘアサロンです。" />
+  <style>
+    :root {
+      --white: #ffffff;
+      --ivory: #fbf8f3;
+      --sand: #efe7dc;
+      --greige: #c9bfb3;
+      --taupe: #897d72;
+      --charcoal: #2d2a27;
+      --muted: #6f6861;
+      --accent: #b99b82;
+      --accent-dark: #8b6f5d;
+      --shadow: 0 18px 45px rgba(69, 55, 45, 0.10);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+      color: var(--charcoal);
+      background: var(--ivory);
+      line-height: 1.8;
+      letter-spacing: 0.04em;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 42px;
+      text-align: center;
+    }
+
+    .section-heading .label {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      line-height: 1.25;
+    }
+
+    .section-heading p {
+      max-width: 680px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 50px;
+      padding: 0 28px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--charcoal);
+      border-color: rgba(45, 42, 39, 0.14);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Header */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      background: rgba(251, 248, 243, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(137, 125, 114, 0.12);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .logo span {
+      margin-top: 5px;
+      font-family: inherit;
+      color: var(--taupe);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .nav-list a {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-list a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-dark);
+      transition: width 0.25s ease;
+    }
+
+    .nav-list a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      margin: 6px auto;
+      background: var(--charcoal);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .hamburger.is-open span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.is-open span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: 118px 0 70px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 18%, rgba(201, 191, 179, 0.38), transparent 34%),
+        linear-gradient(135deg, #fbf8f3 0%, #f0e7dc 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: center;
+      gap: 52px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 46px;
+      height: 1px;
+      background: var(--accent-dark);
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.2rem, 8vw, 6.8rem);
+      font-weight: 500;
+      line-height: 0.96;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 span {
+      display: block;
+      margin-top: 12px;
+      color: var(--accent-dark);
+      font-size: clamp(1.6rem, 4vw, 3.2rem);
+      font-style: italic;
+    }
+
+    .hero-lead {
+      max-width: 530px;
+      margin: 28px 0 34px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      right: -28px;
+      bottom: -28px;
+      width: 58%;
+      height: 48%;
+      border-radius: var(--radius-lg);
+      background: rgba(185, 155, 130, 0.22);
+      z-index: 0;
+    }
+
+    .hero-visual img {
+      position: relative;
+      z-index: 1;
+      height: min(68vh, 660px);
+      object-fit: cover;
+      border-radius: 48% 48% 28px 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      position: absolute;
+      left: -28px;
+      bottom: 38px;
+      z-index: 2;
+      max-width: 240px;
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.2rem;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.65;
+    }
+
+    /* Concept */
+    .concept {
+      background: var(--white);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .concept-image img {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .concept-text .section-heading {
+      text-align: left;
+      margin-bottom: 26px;
+    }
+
+    .concept-text .section-heading p {
+      margin-left: 0;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .feature-item {
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background: var(--ivory);
+      border: 1px solid rgba(137, 125, 114, 0.12);
+    }
+
+    .feature-item h3 {
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .feature-item p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Menu */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .menu-card {
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      box-shadow: 0 10px 30px rgba(69, 55, 45, 0.06);
+      border: 1px solid rgba(137, 125, 114, 0.10);
+    }
+
+    .menu-card h3 {
+      margin-bottom: 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(137, 125, 114, 0.16);
+      font-size: 0.94rem;
+    }
+
+    .price-row span:first-child {
+      color: var(--muted);
+    }
+
+    .price-row span:last-child {
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .menu-note {
+      margin-top: 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    /* Stylists */
+    .stylists {
+      background: linear-gradient(180deg, var(--white), var(--ivory));
+    }
+
+    .stylist-card {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 44px;
+      align-items: center;
+      padding: 34px;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .stylist-card img {
+      aspect-ratio: 1 / 1.12;
+      object-fit: cover;
+      border-radius: 28px;
+    }
+
+    .stylist-info .role {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .stylist-info h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .stylist-info h3 span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    .stylist-info p {
+      margin-top: 22px;
+      color: var(--muted);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .tag-list li {
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: var(--sand);
+      color: var(--taupe);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+      border-radius: var(--radius-lg);
+      background: var(--sand);
+      box-shadow: 0 12px 32px rgba(69, 55, 45, 0.08);
+    }
+
+    .gallery-item:nth-child(2) {
+      margin-top: 44px;
+    }
+
+    .gallery-item img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(10px);
+      font-weight: 700;
+    }
+
+    /* Access */
+    .access {
+      background: var(--white);
+    }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .info-card,
+    .map-card {
+      min-height: 100%;
+      padding: 34px;
+      border-radius: var(--radius-lg);
+      background: var(--ivory);
+      border: 1px solid rgba(137, 125, 114, 0.12);
+    }
+
+    .info-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .info-list div {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(137, 125, 114, 0.16);
+    }
+
+    .info-list dt {
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    .info-list dd {
+      color: var(--muted);
+    }
+
+    .map-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 320px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(185, 155, 130, 0.20), rgba(255, 255, 255, 0.76)),
+        repeating-linear-gradient(45deg, rgba(137, 125, 114, 0.08) 0 1px, transparent 1px 16px);
+      color: var(--taupe);
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* Contact / FAQ */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .reservation-card {
+      position: sticky;
+      top: 104px;
+      padding: 34px;
+      border-radius: var(--radius-lg);
+      background: var(--charcoal);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .reservation-card h3 {
+      margin-bottom: 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .reservation-card p {
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 0.94rem;
+    }
+
+    .reservation-actions {
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .reservation-actions .btn {
+      width: 100%;
+    }
+
+    .tel-box {
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 0.92rem;
+    }
+
+    .tel-box strong {
+      display: block;
+      margin-top: 6px;
+      color: var(--white);
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+    }
+
+    .faq-panel {
+      padding: 34px;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      box-shadow: 0 12px 32px rgba(69, 55, 45, 0.07);
+    }
+
+    .faq-panel h3 {
+      margin-bottom: 22px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .faq-item {
+      border-top: 1px solid rgba(137, 125, 114, 0.16);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 1px solid rgba(137, 125, 114, 0.16);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      border: 0;
+      background: transparent;
+      color: var(--charcoal);
+      text-align: left;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .faq-question::after {
+      content: "+";
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--sand);
+      color: var(--accent-dark);
+      font-weight: 700;
+      transition: transform 0.25s ease;
+    }
+
+    .faq-item.is-open .faq-question::after {
+      content: "−";
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-answer p {
+      padding: 0 0 20px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 34px 0;
+      background: var(--charcoal);
+      color: rgba(255, 255, 255, 0.72);
+      text-align: center;
+      font-size: 0.82rem;
+    }
+
+    /* Scroll animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .section {
+        padding: 76px 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav {
+        position: fixed;
+        top: 74px;
+        left: 0;
+        width: 100%;
+        padding: 20px 16px 28px;
+        background: rgba(251, 248, 243, 0.97);
+        border-bottom: 1px solid rgba(137, 125, 114, 0.12);
+        box-shadow: 0 16px 30px rgba(69, 55, 45, 0.08);
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+
+      .nav.is-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-list {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+      }
+
+      .nav-list a {
+        display: block;
+        padding: 12px 8px;
+      }
+
+      .hero-grid,
+      .concept-grid,
+      .stylist-card,
+      .access-grid,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-visual img {
+        height: auto;
+        aspect-ratio: 4 / 5;
+      }
+
+      .hero-card {
+        left: 18px;
+        bottom: 18px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-item:nth-child(2) {
+        margin-top: 0;
+      }
+
+      .reservation-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 24px, var(--max-width));
+      }
+
+      .section {
+        padding: 62px 0;
+      }
+
+      .header-inner {
+        min-height: 66px;
+      }
+
+      .nav {
+        top: 66px;
+      }
+
+      .logo {
+        font-size: 1.05rem;
+      }
+
+      .hero {
+        padding-top: 98px;
+      }
+
+      .hero-grid {
+        gap: 34px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-card {
+        position: static;
+        max-width: none;
+        margin-top: 16px;
+      }
+
+      .concept-text .section-heading {
+        text-align: center;
+      }
+
+      .concept-text .section-heading p {
+        margin-left: auto;
+      }
+
+      .stylist-card,
+      .info-card,
+      .map-card,
+      .faq-panel,
+      .reservation-card,
+      .menu-card {
+        padding: 24px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item {
+        min-height: 300px;
+      }
+
+      .info-list div {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="logo" aria-label="Lumière Hair Atelier トップへ">
+        Lumière
+        <span>Hair Atelier</span>
+      </a>
+
+      <button class="hamburger" type="button" aria-label="メニューを開閉" aria-expanded="false" aria-controls="global-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="global-nav" class="nav" aria-label="グローバルナビゲーション">
+        <ul class="nav-list">
+          <li><a href="#concept">Concept</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#stylists">Stylist</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#access">Access</a></li>
+          <li><a href="#contact">Reserve</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 1. トップのメインビジュアル -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy fade-up">
+          <p class="eyebrow">Yokohama Motomachi</p>
+          <h1>Lumière<span>Hair Atelier</span></h1>
+          <p class="hero-lead">
+            髪に、光を。毎日のスタイリングが少し楽しみになるような、
+            ナチュラルで上品なヘアデザインをご提案します。
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Web予約する</a>
+            <a href="#menu" class="btn btn-secondary">メニューを見る</a>
+          </div>
+        </div>
+
+        <div class="hero-visual fade-up">
+          <img src="salon-hero.png" alt="明るく洗練されたヘアサロンのメインビジュアル" />
+          <div class="hero-card">
+            <strong>透明感カラー</strong>
+            <p>肌になじむ柔らかな色味と、扱いやすいカットラインが人気です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. サロンの紹介 -->
+    <section id="concept" class="section concept">
+      <div class="container concept-grid">
+        <div class="concept-image fade-up">
+          <img src="salon-interior.png" alt="白とくすみカラーで統一されたサロン店内" />
+        </div>
+
+        <div class="concept-text fade-up">
+          <div class="section-heading">
+            <span class="label">Concept</span>
+            <h2>静かに整う、私らしい髪。</h2>
+            <p>
+              Lumière Hair Atelierは、丁寧なカウンセリングと再現性の高い技術を大切にする、
+              横浜元町の架空プライベートサロンです。
+            </p>
+          </div>
+
+          <div class="feature-list">
+            <article class="feature-item">
+              <h3>01. 似合わせカウンセリング</h3>
+              <p>骨格・髪質・ライフスタイルを見ながら、無理なく続けられるスタイルをご提案します。</p>
+            </article>
+            <article class="feature-item">
+              <h3>02. ダメージに配慮した施術</h3>
+              <p>カラーやパーマも、髪の状態に合わせて薬剤を選定。自然なツヤ感を目指します。</p>
+            </article>
+            <article class="feature-item">
+              <h3>03. 落ち着いた空間</h3>
+              <p>白とグレージュを基調にした明るい店内で、ゆっくり過ごせる時間をお届けします。</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. メニュー・料金 -->
+    <section id="menu" class="section menu">
+      <div class="container">
+        <div class="section-heading fade-up">
+          <span class="label">Menu & Price</span>
+          <h2>メニュー・料金</h2>
+          <p>表示価格は税込です。髪の長さや状態により施術時間が前後する場合があります。</p>
+        </div>
+
+        <div class="menu-grid">
+          <article class="menu-card fade-up">
+            <h3>Cut</h3>
+            <div class="price-row"><span>似合わせカット</span><span>¥6,600</span></div>
+            <div class="price-row"><span>前髪カット</span><span>¥1,650</span></div>
+            <div class="price-row"><span>メンズカット</span><span>¥5,900</span></div>
+          </article>
+
+          <article class="menu-card fade-up">
+            <h3>Color</h3>
+            <div class="price-row"><span>透明感カラー</span><span>¥8,800〜</span></div>
+            <div class="price-row"><span>イルミナカラー</span><span>¥10,450〜</span></div>
+            <div class="price-row"><span>ハイライト</span><span>¥6,600〜</span></div>
+          </article>
+
+          <article class="menu-card fade-up">
+            <h3>Perm / Care</h3>
+            <div class="price-row"><span>ニュアンスパーマ</span><span>¥9,900〜</span></div>
+            <div class="price-row"><span>髪質改善トリートメント</span><span>¥7,700</span></div>
+            <div class="price-row"><span>ヘッドスパ 30分</span><span>¥4,950</span></div>
+          </article>
+        </div>
+
+        <p class="menu-note fade-up">初回のお客様は、カット＋カラー＋トリートメント ¥17,600 → ¥14,800 のクーポンをご利用いただけます。</p>
+      </div>
+    </section>
+
+    <!-- 4. スタイリスト紹介 -->
+    <section id="stylists" class="section stylists">
+      <div class="container">
+        <div class="section-heading fade-up">
+          <span class="label">Stylist</span>
+          <h2>スタイリスト紹介</h2>
+          <p>髪質や雰囲気に合わせて、自然体で似合うデザインを一緒に見つけます。</p>
+        </div>
+
+        <article class="stylist-card fade-up">
+          <img src="salon-stylist.png" alt="Lumière Hair Atelierのスタイリスト" />
+          <div class="stylist-info">
+            <span class="role">Top Stylist</span>
+            <h3>Haruka Aoyama<span>青山 はるか</span></h3>
+            <p>
+              ナチュラルなレイヤーカットと透明感カラーが得意。朝のセットが簡単になるよう、
+              乾かすだけでまとまりやすいデザインをご提案します。初めての方も安心してご相談ください。
+            </p>
+            <ul class="tag-list">
+              <li>透明感カラー</li>
+              <li>顔まわりカット</li>
+              <li>髪質改善</li>
+              <li>メンズ対応</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. ギャラリー -->
+    <section id="gallery" class="section gallery">
+      <div class="container">
+        <div class="section-heading fade-up">
+          <span class="label">Gallery</span>
+          <h2>ヘアスタイルギャラリー</h2>
+          <p>柔らかな質感と清潔感を大切にした、毎日に馴染むスタイルサンプルです。</p>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item fade-up">
+            <img src="salon-style1.png" alt="透明感のあるミディアムヘアスタイル" />
+            <figcaption class="gallery-caption">Soft Medium</figcaption>
+          </figure>
+          <figure class="gallery-item fade-up">
+            <img src="salon-style2.png" alt="上品なショートボブのヘアスタイル" />
+            <figcaption class="gallery-caption">Clean Bob</figcaption>
+          </figure>
+          <figure class="gallery-item fade-up">
+            <img src="salon-interior.png" alt="落ち着いた雰囲気の美容室店内" />
+            <figcaption class="gallery-caption">Salon Mood</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. アクセス・営業時間 -->
+    <section id="access" class="section access">
+      <div class="container">
+        <div class="section-heading fade-up">
+          <span class="label">Access</span>
+          <h2>アクセス・営業時間</h2>
+          <p>横浜元町の静かな通りにある、完全予約制の架空ヘアサロンです。</p>
+        </div>
+
+        <div class="access-grid">
+          <div class="info-card fade-up">
+            <dl class="info-list">
+              <div>
+                <dt>住所</dt>
+                <dd>〒231-0861 神奈川県横浜市中区元町2-18-4 Lumière Building 2F</dd>
+              </div>
+              <div>
+                <dt>アクセス</dt>
+                <dd>みなとみらい線「元町・中華街駅」5番出口より徒歩4分</dd>
+              </div>
+              <div>
+                <dt>営業時間</dt>
+                <dd>平日 10:00〜20:00 / 土日祝 9:30〜19:00</dd>
+              </div>
+              <div>
+                <dt>定休日</dt>
+                <dd>毎週火曜日・第2水曜日</dd>
+              </div>
+              <div>
+                <dt>支払い</dt>
+                <dd>現金 / クレジットカード / 電子マネー / QR決済</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="map-card fade-up">
+            <div class="map-placeholder">
+              <p>MAP PLACEHOLDER<br />Google Mapなどを後から埋め込み可能</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. お問い合わせ・予約導線 -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <div class="section-heading fade-up">
+          <span class="label">Reserve & Contact</span>
+          <h2>お問い合わせ・ご予約</h2>
+          <p>ご予約はWeb・お電話から受け付けています。髪のお悩みだけでもお気軽にご相談ください。</p>
+        </div>
+
+        <div class="contact-wrap">
+          <aside class="reservation-card fade-up">
+            <h3>Book your style</h3>
+            <p>当日予約も空きがあればご案内可能です。初回のお客様はカウンセリング時間を長めに確保しています。</p>
+            <div class="reservation-actions">
+              <a href="#" class="btn btn-secondary">Web予約ページへ</a>
+              <a href="mailto:reserve@lumiere-hair.example.com" class="btn btn-secondary">メールで問い合わせる</a>
+            </div>
+            <div class="tel-box">
+              お電話でのご予約
+              <strong>045-123-4567</strong>
+            </div>
+          </aside>
+
+          <div class="faq-panel fade-up">
+            <h3>よくある質問</h3>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button">初めてでも指名できますか？</button>
+              <div class="faq-answer">
+                <p>はい、初回からご指名いただけます。担当者に迷う場合は、希望の雰囲気やメニューに合わせてご提案します。</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button">カラーだけの予約はできますか？</button>
+              <div class="faq-answer">
+                <p>可能です。髪の状態によってはトリートメントの追加や施術内容の変更をご提案する場合があります。</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button">メンズカットも対応していますか？</button>
+              <div class="faq-answer">
+                <p>対応しています。ビジネス向けの清潔感あるスタイルから、ニュアンスパーマまでご相談いただけます。</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button">キャンセルはいつまで可能ですか？</button>
+              <div class="faq-answer">
+                <p>前日までのご連絡をお願いしています。やむを得ない場合は、分かり次第お早めにご連絡ください。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Lumière Hair Atelier. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ハンバーガーメニュー
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav');
+    const navLinks = document.querySelectorAll('.nav-list a');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('is-open');
+      nav.classList.toggle('is-open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('is-open');
+        nav.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // FAQアコーディオン
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+
+        faqItems.forEach((otherItem) => {
+          otherItem.classList.remove('is-open');
+          const otherAnswer = otherItem.querySelector('.faq-answer');
+          otherAnswer.style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          item.classList.add('is-open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // スクロールでふわっと表示
+    const fadeElements = document.querySelectorAll('.fade-up');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.16,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    fadeElements.forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
